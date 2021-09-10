@@ -2,6 +2,8 @@
 ### Modern solution for dealing with emergent behaviour.
 ---
 
+![Teaser](./media/gms2-utility-ai.gif)
+
 ## Table of contents
 
 1. [Idea](#idea)
