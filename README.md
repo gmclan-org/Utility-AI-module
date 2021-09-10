@@ -269,7 +269,7 @@ to report results of the reasoning process.
 
   #### `Push(score: real): undefined`
 
-  Adds score tu internal collection.
+  Adds score to internal collection.
 
   ---
 
