@@ -269,6 +269,8 @@ to report results of the reasoning process.
 
   #### `Push(score: real): undefined`
 
+  - `score: real` - Score value got from state score evaluation.
+
   Adds score to internal collection.
 
   ---
@@ -455,6 +457,8 @@ This consideration always return score from the value provided.
   ---
 
   #### `new UtilityConsiderationConstant(value: real)`
+
+  - `value: real` - Value to be used as score of this consideration.
 
   Creates new class instance.
 
