@@ -63,9 +63,8 @@ function TestConsiderationMood(value)
   _value = value;
 
   static Score = function(localMemory = {}, sharedMemory = {}) {
-    // First we calculate actual distance to desired value, then we clamp it to
-    // 0-1 range and reverse (1 - x) so when score hits 1 it means we have
-    // reached desired value.
+    // First we calculate actual distance to desired value, then reverse (1 - x)
+    // so when score hits 1 it means we have reached desired value.
     return 1 - abs(_value - localMemory._mood);
   }
 };
@@ -135,9 +134,9 @@ influence game object in agent's states.
 
 <details>
   <summary>Methods</summary>
-  
+
   ---
-  
+
   #### `new UtilityAgent(states: [UtilityState], localMemory: any)`
 
   - `states: [UtilityState]` - List of all possible states that agent can choose from.
@@ -146,21 +145,21 @@ influence game object in agent's states.
   it as source of agent memory.
 
   Creates new class instance.
-  
+
   ---
-  
+
   #### `CurrentState(): UtilityState|undefined`
 
   Returns currently active state or `undefined` otherwise.
 
   ---
-  
+
   #### `Update(): undefined`
 
   Perform update on currently active state.
 
   ---
-  
+
   #### `Reason(sharedMemory: any, reporter: UtilityReasoningReporter|undefined): UtilityState|undefined`
 
   - `sharedMemory: any` - Reference to shared object reference to be read by
@@ -175,7 +174,7 @@ influence game object in agent's states.
   choosen state.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -251,7 +250,7 @@ to report results of the reasoning process.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityReasoningReporter(id: any, printer: function|undefined)`
 
   - `id: any` - Object that will be shown in report (preferably `string`).
@@ -261,25 +260,25 @@ to report results of the reasoning process.
   Creates new class instance.
 
   ---
-  
+
   #### `Begin(): undefined`
 
   Resets internal state for further scores collection.
 
   ---
-  
+
   #### `Push(score: real): undefined`
 
   Adds score tu internal collection.
 
   ---
-  
+
   #### `Report(): undefined`
 
   Prints collected scores in human readable format.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -295,7 +294,7 @@ this state.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityState(consideration: UtilityConsideration)`
 
   - `consideration: UtilityConsideration` - Reference to main object that inherits
@@ -305,7 +304,7 @@ this state.
   Creates new class instance.
 
   ---
-  
+
   #### `OnEnter(agent: UtilityAgent): undefined`
 
   - `agent: UtilityAgent` - Reference to agent that owns this state.
@@ -313,7 +312,7 @@ this state.
   Override this method to perform action when state is getting enabled.
 
   ---
-  
+
   #### `OnExit(agent: UtilityAgent): undefined`
 
   - `agent: UtilityAgent` - Reference to agent that owns this state.
@@ -321,7 +320,7 @@ this state.
   Override this method to perform action when state is getting enabled.
 
   ---
-  
+
   #### `OnUpdate(agent: UtilityAgent): undefined`
 
   - `agent: UtilityAgent` - Reference to agent that owns this state.
@@ -330,7 +329,7 @@ this state.
   `UtilityAgent:Update` is running.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -339,7 +338,7 @@ this state.
   Runs main consideration / evaluator to score this state probability to occur.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -408,13 +407,13 @@ overrides `Score` method to return probability score for this consideration.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityConsideration()`
 
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -424,7 +423,7 @@ overrides `Score` method to return probability score for this consideration.
   User should override this method in custom consideration / evaluation class.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -454,13 +453,13 @@ This consideration always return score from the value provided.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityConsiderationConstant(value: real)`
 
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -469,7 +468,7 @@ This consideration always return score from the value provided.
   Returns value passed to this consideration constructor.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -485,7 +484,7 @@ need a custom way to handle multiple sub-considerations scores.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityEvaluator(considerations: [UtilityConsideration])`
 
   - `considerations: [UtilityConsideration]` - List of children considerations
@@ -494,7 +493,7 @@ need a custom way to handle multiple sub-considerations scores.
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -504,7 +503,7 @@ need a custom way to handle multiple sub-considerations scores.
   handle combining children considerations into one score value.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -518,7 +517,7 @@ Calculates maximum score of children considerations.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityEvaluatorMax(considerations: [UtilityConsideration], mapping: function)`
 
   - `considerations: [UtilityConsideration]` - List of children considerations
@@ -528,7 +527,7 @@ Calculates maximum score of children considerations.
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -537,7 +536,7 @@ Calculates maximum score of children considerations.
   Returns maximum value of children considerations scores.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -551,7 +550,7 @@ Calculates minimum score of children considerations.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityEvaluatorMin(considerations: [UtilityConsideration], mapping: function)`
 
   - `considerations: [UtilityConsideration]` - List of children considerations
@@ -561,7 +560,7 @@ Calculates minimum score of children considerations.
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -570,7 +569,7 @@ Calculates minimum score of children considerations.
   Returns minimum value of children considerations scores.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -584,7 +583,7 @@ Calculates product of children considerations score.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityEvaluatorMultiply(considerations: [UtilityConsideration], mapping: function)`
 
   - `considerations: [UtilityConsideration]` - List of children considerations
@@ -594,7 +593,7 @@ Calculates product of children considerations score.
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
@@ -603,7 +602,7 @@ Calculates product of children considerations score.
   Returns product value of children considerations scores.
 
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
@@ -617,7 +616,7 @@ Calculates sum of children considerations score.
   <summary>Methods</summary>
 
   ---
-  
+
   #### `new UtilityEvaluatorSum(considerations: [UtilityConsideration], mapping: function)`
 
   - `considerations: [UtilityConsideration]` - List of children considerations
@@ -627,16 +626,16 @@ Calculates sum of children considerations score.
   Creates new class instance.
 
   ---
-  
+
   #### `Score(localMemory: any, sharedMemory: any): real`
 
   - `localMemory: any` - Reference to local memory of UtilityAgent.
   - `sharedMemory: any` - Reference to shared memory passed to UtilityAgent.
 
   Returns sum value of children considerations scores.
-  
+
   ---
-  
+
   #### `Dispose(): undefined`
 
   Cleanups all created internal resources. Call it before deleting the object.
