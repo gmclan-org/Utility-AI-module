@@ -34,7 +34,7 @@ The mechanism behind utility AI is really simple: each state contains a tree of
 considerations that gets evaluated into one single score that represents the
 probability of given state to occur and one with highest score value gets selected.
 Altho this system assumes that scores are in range from 0 to 1, consideration can
-produce and value, in the end highest one is what matters.
+produce any value (in the end highest one is what matters).
 
 Imagine you have two possible states: Happy and Sad, and mood value that in
 time goes from 0 to 1, and we setup considerations for these states in a way
