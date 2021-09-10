@@ -317,7 +317,7 @@ this state.
 
   - `agent: UtilityAgent` - Reference to agent that owns this state.
 
-  Override this method to perform action when state is getting enabled.
+  Override this method to perform action when state is getting disabled.
 
   ---
 
